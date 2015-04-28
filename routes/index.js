@@ -7,16 +7,12 @@ router.get('/', function(req, res) {
 });
 
 router.get('/getOrders', function(req, res) {
-  if(req.header('Owner') != 'Will'){
-    res.send('Invalid request.');
-  } else {
-    var db = req.db;
-    var collection = db.get('orders');
-    collection.find({},{},function(e,docs){
-      res.type('json');
-      res.jsonp(docs);
-    });
-  }
+  var db = req.db;
+  var collection = db.get('orders');
+  collection.find({},{},function(e,docs){
+    res.type('json');
+    res.jsonp(docs);
+  });
 });
 
 router.post('/submit', function(req,res){
