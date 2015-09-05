@@ -28,4 +28,16 @@ router.post('/submit', function(req,res){
     res.send('Your submission failed.');
   }
 });
+
+router.all('/courier', function(req,res){
+  var db = req.db;
+  var collection = db.get('courier');
+  console.log(req.body);
+  var name = req.body.name;
+  var message = req.body.message;
+  var photo = req.body.photo;
+  collection.insert({ "name" : name, "email" : email, "message" : message});
+  console.log(name, message, 'recieved');
+  res.send('Success!');
+});
 module.exports = router;
